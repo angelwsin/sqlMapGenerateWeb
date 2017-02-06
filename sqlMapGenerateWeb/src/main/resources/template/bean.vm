@@ -1,0 +1,28 @@
+
+
+package ${classMeta.packageName};
+
+class ${classMeta.className} {
+
+  
+#foreach($field in $!classMeta.fieldList)
+   
+private   $!{field.dataType}   $!{field.columnName};
+#end
+   
+#foreach($field in $!classMeta.fieldList)
+#if($!field.isBool)
+public $!{field.dataType} is$!{field.methodName}(){
+     return this.$!{field.columnName};
+    }
+#else
+public $!{field.dataType} get$!{field.methodName}(){
+       return this.$!{field.columnName};
+    }
+#end
+public void set$!{field.methodName}($!{field.dataType} $!{field.columnName}){
+    this.$!{field.columnName}=$!{field.columnName};
+   }
+#end
+
+}

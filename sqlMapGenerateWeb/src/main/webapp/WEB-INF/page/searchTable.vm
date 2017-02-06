@@ -1,0 +1,11 @@
+<html>
+<body>
+<h2>Hello World!</h2>
+<form action="searchTable" method="post">
+<div>
+  <div>表名：<input name="table"></div>
+</div>
+<input type="submit" value="登录">
+</form>
+</body>
+</html>
