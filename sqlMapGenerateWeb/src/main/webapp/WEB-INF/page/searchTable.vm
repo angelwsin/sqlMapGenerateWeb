@@ -1,11 +1,22 @@
 <html>
 <body>
+<head>
+ #parse("/comm/head.vm")
+</head>
 <h2>Hello World!</h2>
 <form action="searchTable" method="post">
 <div>
-  <div>表名：<input name="table"></div>
+  <div>tableName:<input name="table" value='$!table'></div>
 </div>
-<input type="submit" value="登录">
+<input type="submit" value="search">
 </form>
+
+
+<div>
+  <table id="list2"></table> 
+		<div id="pager2"></div>  
+</div>
 </body>
+<script type="text/javascript" src="../js/tables/search.js"></script>
+
 </html>

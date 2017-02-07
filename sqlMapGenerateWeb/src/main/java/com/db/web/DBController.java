@@ -8,8 +8,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.db.connection.Const;
 import com.db.connection.DBExecutorImp;
@@ -36,11 +38,12 @@ public class DBController {
         return "searchTable";
     }
     
-    @RequestMapping(value="/db/searchTable",method={RequestMethod.POST})
-    public String   searchTable(HttpServletRequest request){
+    @RequestMapping(value="/db/searchTable.json",method={RequestMethod.POST,RequestMethod.GET})
+    @ResponseBody
+    public void   searchTable(HttpServletRequest request,ModelMap model){
+        log.info("table "+request.getParameter("table"));
         List<TableColum> tables = searchTableMetaAdpter.getTableMeta(request.getParameter("table"), DBExecutorImp.prop);
-        log.info(tables.get(0).getColumnName());
-        return "searchTable";
+        model.put("tables", tables);
     }
 
 }
