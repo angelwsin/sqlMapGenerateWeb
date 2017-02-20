@@ -40,10 +40,11 @@ public class DBController {
     
     @RequestMapping(value="/db/searchTable.json",method={RequestMethod.POST,RequestMethod.GET})
     @ResponseBody
-    public void   searchTable(HttpServletRequest request,ModelMap model){
+    public List<TableColum>   searchTable(HttpServletRequest request,ModelMap model){
         log.info("table "+request.getParameter("table"));
         List<TableColum> tables = searchTableMetaAdpter.getTableMeta(request.getParameter("table"), DBExecutorImp.prop);
         model.put("tables", tables);
+        return tables;
     }
 
 }

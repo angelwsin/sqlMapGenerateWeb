@@ -19,6 +19,8 @@ public class TableColum {
 	             private boolean isBool;
 	             
 	             private String methodName;
+	             
+	             private String tabDataType;
 
 				public String getColumnName() {
 					return columnName;
@@ -58,6 +60,14 @@ public class TableColum {
 
                 public void setMethodName(String methodName) {
                     this.methodName = methodName;
+                }
+
+                public String getTabDataType() {
+                    return tabDataType;
+                }
+
+                public void setTabDataType(String tabDataType) {
+                    this.tabDataType = tabDataType;
                 }
 				
 				

@@ -43,12 +43,20 @@
         <property name="prefix" value="/WEB-INF/page/"/>
         <property name="suffix" value=".jsp"/>
      </bean> -->   
+      <bean id="messageAdapter" class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">  
+       <property name="messageConverters">  
+           <list>  
+               <!-- Support JSON -->   
+               <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>  
+           </list>  
+       </property>  
+   </bean>
      <bean id="velocityConfig" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
          <property name="resourceLoaderPath" value="/WEB-INF/page/"/>
          <property name="configLocation"  value="classpath:conf/velocity.properties"/>
      </bean>
      <bean id="velocityViewResolver" class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
-       <property name="viewClass"  value="org.springframework.web.servlet.view.velocity.VelocityView"/>
+       <property name="viewClass"  value="com.db.web.view.VelocityViewEx"/>
        <property name="prefix" value="/"/>
         <property name="suffix" value=".vm"/>
      </bean>
@@ -60,6 +68,9 @@
         <property name="maxInMemorySize" value="40960"/>  
     </bean>  
     
+    <mvc:interceptors>
+     <bean class="com.db.web.interceptor.ContentTypeInterceptor"/>
+    </mvc:interceptors>
    <!--  <mvc:interceptors>  
     使用bean定义一个Interceptor，直接定义在mvc:interceptors根下面的Interceptor将拦截所有的请求  
     <bean class="com.weixin.web.intercepter.InitContextIntercepter"/> 
@@ -71,7 +82,8 @@
        
     </mvc:interceptor>   
   </mvc:interceptors> -->
-      
+    
       
    <bean id="searchTableMetaAdpter" class="com.db.connection.MySqlSearchTableMetaAdpter"/>
+   
 </beans>  

@@ -4,12 +4,11 @@
  #parse("/comm/head.vm")
 </head>
 <h2>Hello World!</h2>
-<form action="searchTable" method="post">
 <div>
-  <div>tableName:<input name="table" value='$!table'></div>
+  <div>表名:<input name="table" value='$!table' id="table"></div>
 </div>
-<input type="submit" value="search">
-</form>
+<input type="button" value="search" id="search">
+
 
 
 <div>

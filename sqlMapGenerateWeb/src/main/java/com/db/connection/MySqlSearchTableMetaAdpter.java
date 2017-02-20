@@ -36,6 +36,7 @@ public class MySqlSearchTableMetaAdpter extends SearchTableMetaAdpter{
 			             colum.setColumnName(StringUtils.getTableColField(String.valueOf(result.getObject("column_name"))));
 			             colum.setDataType( TypeMapRegistry.getTypeByJdbcType(String.valueOf(result.getObject("data_type"))));
 			             colum.setColumnComment(String.valueOf(result.getObject("column_comment")));
+			             colum.setTabDataType(String.valueOf(result.getObject("data_type")));
 			             colum.setBool(Boolean.class.getSimpleName().equals(colum.getDataType()));
 			             colum.setMethodName(StringUtils.getTableNameClass(String.valueOf(result.getObject("column_name"))));
 			             colums.add(colum);

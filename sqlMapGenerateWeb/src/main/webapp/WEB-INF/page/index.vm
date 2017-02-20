@@ -1,19 +1,23 @@
+<!DOCTYPE html>
 <html>
+<head>
+<meta charset="UTF-8"/>
+</head>
 <body>
 <h2>Hello World!</h2>
 <form action="db/Config" method="post">
 <div>
-  <div>dbType:
+  <div>数据库类型：
   <select name="dbType">
       <option value="mysql">mysql</option>     
   </select></div>
   <div>
-        username:<input name="username">
+        用户名:<input name="username">
   </div>
-  <div>password:<input name="password"></div>
-  <div>DBURL:<input name="url"></div>
+  <div>密码:<input name="password"></div>
+  <div>数据库URL:<input name="url"></div>
 </div>
-<input type="submit" value="login">
+<input type="submit" value="提交">
 </form>
 </body>
 </html>
