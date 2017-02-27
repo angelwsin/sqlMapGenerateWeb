@@ -5,15 +5,26 @@
 </head>
 <h2>Hello World!</h2>
 <div>
+  <form action="searchTable" method="post">
   <div>表名:<input name="table" value='$!table' id="table"></div>
+  <input type="submit" value="查询" id="search"> <input type="button" value="生成代码" id="javaBean">
+  </form>
 </div>
-<input type="button" value="search" id="search">
 
 
 
 <div>
-  <table id="list2"></table> 
-		<div id="pager2"></div>  
+    <table border="1">
+    <th>选中</th><th>列名</th><th>数据类型</th><th>描述</th>
+    #foreach($item in $tables)
+    <tr>
+    <td ><input type="checkbox"></td>
+    <td name="colName">$item.columnName</td>
+    <td >$item.tabDataType</td>
+    <td>$item.columnComment</td>
+    </tr>
+    #end
+    </table>
 </div>
 </body>
 <script type="text/javascript" src="../js/tables/search.js"></script>
