@@ -8,5 +8,7 @@ public interface Const {
 	 public final static String    PASSWORD ="password";
 	 public final static String    MYSQL ="mysql";
 	 public final static String     SELECT ="select";
+	 public final static String     SQLMAPPATH="sqlMapPath";
+	 public final static String     JAVAPATH="javaPath";
 
 }

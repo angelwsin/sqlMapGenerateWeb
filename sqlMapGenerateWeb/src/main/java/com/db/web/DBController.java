@@ -15,10 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSONObject;
-import com.db.connection.ClassMeatFactory;
 import com.db.connection.Const;
 import com.db.connection.DBExecutorImp;
-import com.db.connection.MySqlSearchTableMetaAdpter;
 import com.db.connection.SearchTableMetaAdpter;
 import com.db.db.table.ClassMeta;
 import com.db.db.table.SqlMapMeta;
@@ -34,6 +32,8 @@ import com.db.web.vo.GenBean;
 public class DBController {
     
     private static Logger log = LoggerFactory.getLogger(DBController.class); 
+    
+    
     
     @Autowired
     private SearchTableMetaAdpter searchTableMetaAdpter;
@@ -62,6 +62,10 @@ public class DBController {
     public String  javaBean(HttpServletRequest request){
         String colNames = request.getParameter("colNames");
         String tableName = request.getParameter("tableName");
+        String outPath =   request.getParameter("outPath");
+        if(StringUtils.isEmpty(outPath)){
+            return "输出路径为空";
+        }
         log.info("colNames "+colNames);
         GenBean beans = new GenBean();
         beans.setTableName(tableName);
@@ -80,7 +84,7 @@ public class DBController {
         meta.setPackageName("com.db.bean");
         VelocityContext  context = new VelocityContext();
         context.put("classMeta", meta);
-        GenBeanFactory.genBean(meta, context, "d://bean//");
+        GenBeanFactory.genBean(meta, context, outPath+GenBeanFactory.get(Const.JAVAPATH));
         
         SqlMapMeta sqlMeta = new SqlMapMeta();
         sqlMeta.setMapper("com.db.mapper");
@@ -88,10 +92,10 @@ public class DBController {
         sqlMeta.setBeanName(meta.getClassName());
         sqlMeta.setTableName(beans.getTableName());
         context.put("sqlMeta", sqlMeta);
-        GenBeanFactory.genSqlMap(sqlMeta, context, "d://bean//");
+        GenBeanFactory.genSqlMap(sqlMeta, context, outPath+GenBeanFactory.get(Const.SQLMAPPATH));
         sqlMeta.addImport(sqlMeta.getBeanClazz());
         sqlMeta.setParameter(StringUtils.getPram(beans.getTableName()));
-        GenBeanFactory.genMapper(sqlMeta, context, "d://bean//");
+        GenBeanFactory.genMapper(sqlMeta, context, outPath+GenBeanFactory.get(Const.JAVAPATH));
         
         
         

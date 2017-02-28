@@ -8,7 +8,7 @@ $(function(){
         type: "POST",
         url: "javaBean.json",
         //contentType: "application/json; charset=utf-8",
-        data: {tableName:$("#table").val(),colNames:foreachData("table tr")},
+        data: {tableName:$("#table").val(),colNames:foreachData("table tr"),outPath:$("#outPath").val()},
         dataType: "json",
         success: function (message) {
             alert(message)

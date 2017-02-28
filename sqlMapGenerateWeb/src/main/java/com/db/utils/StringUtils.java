@@ -37,6 +37,11 @@ public class StringUtils {
        }
        return build.toString();
     }
+    
+    public static boolean isEmpty(String str){
+        return str==null || str.length()==0;
+ }
+
    
 
 }

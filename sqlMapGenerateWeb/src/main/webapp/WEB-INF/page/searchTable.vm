@@ -9,6 +9,7 @@
   <div>表名:<input name="table" value='$!table' id="table"></div>
   <input type="submit" value="查询" id="search"> <input type="button" value="生成代码" id="javaBean">
   </form>
+  <input name="outPath"  id="outPath">
 </div>
 
 

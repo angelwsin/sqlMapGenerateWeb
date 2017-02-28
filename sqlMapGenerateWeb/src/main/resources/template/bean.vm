@@ -2,7 +2,7 @@
 
 package ${classMeta.packageName};
 
-class ${classMeta.className} {
+public class ${classMeta.className} {
 
   
 #foreach($field in $!classMeta.fieldList)

@@ -1,7 +1,6 @@
 package com.db.template;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -18,6 +17,29 @@ import com.db.db.table.ClassMeta;
 import com.db.db.table.SqlMapMeta;
 
 public class GenBeanFactory {
+    
+    public    static Properties prop = new Properties();
+    static{
+            InputStream is =    null;
+            try {
+              is =   Thread.currentThread().getContextClassLoader().getResourceAsStream("conf/generate.properties");
+              prop.load(is);
+         } catch (Exception e) {
+             throw new RuntimeException("配置错误");
+         }finally {
+             if(null!=is){
+                 try {
+                     is.close();
+                 } catch (IOException e) {
+                     e.printStackTrace();
+                 }
+             }
+         }
+    }
+    
+    public static String get(String key){
+        return prop.getProperty(key);
+    }
     
     static{
         Properties prop = new Properties();
