@@ -1,0 +1,14 @@
+package ${sqlMeta.mapper};
+
+
+#foreach($import in $!sqlMeta.importList)
+import        $!{import};
+#end
+
+
+interface ${sqlMeta.beanName}Mapper {
+
+  
+    int  insert${sqlMeta.beanName}(${sqlMeta.beanName} ${sqlMeta.parameter});
+
+}

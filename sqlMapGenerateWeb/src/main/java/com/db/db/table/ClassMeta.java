@@ -49,5 +49,10 @@ public class ClassMeta {
         this.fieldList = fieldList;
     }
     
+    public List<String> addImport(String pak) {
+          importList.add(pak);
+        return importList;
+    }
+    
     
 }

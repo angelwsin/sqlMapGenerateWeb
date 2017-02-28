@@ -21,6 +21,7 @@ import com.db.connection.DBExecutorImp;
 import com.db.connection.MySqlSearchTableMetaAdpter;
 import com.db.connection.SearchTableMetaAdpter;
 import com.db.db.table.ClassMeta;
+import com.db.db.table.SqlMapMeta;
 import com.db.db.table.TableColum;
 import com.db.template.GenBeanFactory;
 import com.db.utils.StringUtils;
@@ -80,6 +81,20 @@ public class DBController {
         VelocityContext  context = new VelocityContext();
         context.put("classMeta", meta);
         GenBeanFactory.genBean(meta, context, "d://bean//");
+        
+        SqlMapMeta sqlMeta = new SqlMapMeta();
+        sqlMeta.setMapper("com.db.mapper");
+        sqlMeta.setBeanClazz(meta.getPackageName()+"."+meta.getClassName());
+        sqlMeta.setBeanName(meta.getClassName());
+        sqlMeta.setTableName(beans.getTableName());
+        context.put("sqlMeta", sqlMeta);
+        GenBeanFactory.genSqlMap(sqlMeta, context, "d://bean//");
+        sqlMeta.addImport(sqlMeta.getBeanClazz());
+        sqlMeta.setParameter(StringUtils.getPram(beans.getTableName()));
+        GenBeanFactory.genMapper(sqlMeta, context, "d://bean//");
+        
+        
+        
         return "";
     }
 

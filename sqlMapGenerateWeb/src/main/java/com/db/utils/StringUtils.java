@@ -28,6 +28,15 @@ public class StringUtils {
        }
        return build.toString();
     }
+    
+    public static String getPram(String tableName){
+        String[] s= tableName.split("_");
+       StringBuilder build = new StringBuilder(s[0]);
+       for(int i=1;i<s.length;i++){
+           build.append(firstCharToUp(s[i]));
+       }
+       return build.toString();
+    }
    
 
 }

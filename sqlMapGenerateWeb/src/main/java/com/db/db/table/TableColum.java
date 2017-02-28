@@ -21,6 +21,8 @@ public class TableColum {
 	             private String methodName;
 	             
 	             private String tabDataType;
+	             
+	             private String column_key;
 
 				public String getColumnName() {
 					return columnName;
@@ -68,6 +70,14 @@ public class TableColum {
 
                 public void setTabDataType(String tabDataType) {
                     this.tabDataType = tabDataType;
+                }
+
+                public String getColumn_key() {
+                    return column_key;
+                }
+
+                public void setColumn_key(String column_key) {
+                    this.column_key = column_key;
                 }
 				
 				
